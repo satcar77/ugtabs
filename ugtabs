@@ -1,0 +1,59 @@
+#!/usr/bin/env python
+from ugtabs import *
+import argparse
+
+parser = argparse.ArgumentParser(
+		description="Selects best tabs/chords from ultimate-guitar.com for a particular song based"
+				"on the user ratings. Gives you the option to display the song in the console as well "
+				"as save the file to an external text file. If the artist and song are not given as" 
+				"arguments the currently playing song is taken from Rhythmbox"
+				)
+parser.add_argument("songname",metavar="SongName",default="default",nargs="*",help="Name of the song")
+parser.add_argument("-c","--console",action="store_true",help="Display the chords/tabs in console(Default in browser)")
+parser.add_argument("-n","--number",type=int,help="Numbers of tabs/chords you want to see")
+parser.add_argument("-s","--save",action="store_true",help="save the tabs/chords to a text file")
+parser.add_argument("-t","--tabs",action="store_true",help="Force tab fetch:This will force program to fetch the best tab for the song")
+parser.add_argument("-o","--chords",action="store_true",help="Force chords fetch:This will force program to fetch the best chord for the song.")
+args=parser.parse_args()
+title=""
+
+if args.songname=="default":
+	name=currentlyplaying()[1]
+	print "Song Playing : "+name
+	title=name.split(" ")
+else:
+	title=args.songname
+
+def parse(string):
+	parsed=""
+	for i in string:
+		parsed+=i
+		parsed+="+"
+	return parsed
+soup=bs4.BeautifulSoup(requests.get("https://www.ultimate-guitar.com/search.php?search_type=title&value="+parse(title)).text,"lxml")
+
+numbers=1
+
+if args.number is not None:
+	numbers=args.number
+if args.save:
+	if args.tabs:
+		save_to_file(args.songname,navigate(soup,numbers,typ="tab"))
+	elif args.chords:
+		save_to_file(args.songname,navigate(soup,numbers,typ="chords"))
+	else:
+		save_to_file(args.songname,navigate(soup,numbers,typ="any"))
+elif args.console:
+	if args.tabs:
+		console_open(navigate(soup,numbers,typ="tab"))
+	elif args.chords:
+		console_open(navigate(soup,numbers,typ="chords"))
+	else:
+		console_open(navigate(soup,numbers,typ="any"))
+else:
+	if args.tabs:
+		browser_open(navigate(soup,numbers,typ="tab"))
+	elif args.chords:
+		browser_open(navigate(soup,numbers,typ="chords"))
+	else:
+		browser_open(navigate(soup,numbers,typ="any"))
