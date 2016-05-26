@@ -30,11 +30,16 @@ def console_open(lists):
 	if lists:
 		soup=[]
 		print "Displaying the tabs in the Console... Please Wait"
-		for i in lists:
-			
-			soup=bs4.BeautifulSoup(requests.get(i).text,"lxml")
-			tabs=soup.select("pre.js-tab-content")
-			print tabs[0].text
+		try:
+			for i in lists:
+				
+				soup=bs4.BeautifulSoup(requests.get(i).text,"lxml")
+				tabs=soup.select("pre.js-tab-content")
+				if tabs:
+					print tabs[0].text 
+		except requests.exceptions.RequestException:
+			print("Error! fetching the tabs. Please try again.")
+
 	else:
 		print "Sorry no tabs/chords found for the song"
 
