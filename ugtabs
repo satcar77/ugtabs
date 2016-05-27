@@ -4,9 +4,9 @@ import argparse,sys
 
 parser = argparse.ArgumentParser(
 		description="Selects best tabs/chords from ultimate-guitar.com for a particular song based"
-				"on the user ratings. Gives you the option to display the song in the console as well "
-				"as save the file to an external text file. If the artist and song are not given as" 
-				"arguments the currently playing song is taken from Rhythmbox"
+				" on the user ratings. Gives you the option to display the song in the console as well "
+				" as save the file to an external text file. If the artist and song are not given as" 
+				" arguments the currently playing song is taken from Rhythmbox"
 				)
 parser.add_argument("songname",metavar="SongName",default="default",nargs="*",help="Name of the song")
 parser.add_argument("-c","--console",action="store_true",help="Display the chords/tabs in console(Default in browser)")

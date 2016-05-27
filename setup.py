@@ -12,6 +12,8 @@ setup(
 		author=ugtabs.AUTHOR,
 		author_email=ugtabs.AUTHOR_EMAIL,
 		url=ugtabs.URL,
+		install_requires=["bs4","lxml"],
 		py_modules=["ugtabs"],
 		scripts=["ugtabs"],
+
 		)
