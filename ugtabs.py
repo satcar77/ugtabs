@@ -13,7 +13,7 @@ def navigate(soup,numbers=1,typ='chords'):
 	links=sort(get_me_tuple(soup))
 	n=min(numbers,len(links))
 	for i in links:
-		if i[2]==typ or typ=="any":
+		if (i[2]==typ or typ=="any") and (i[2]!="guitar pro" or i[2]!="video lesson"):
 			filter.append(i[1])
 			c+=1
 		if c>=numbers:

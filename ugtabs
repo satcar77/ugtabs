@@ -14,6 +14,8 @@ parser.add_argument("-n","--number",type=int,help="Numbers of tabs/chords you wa
 parser.add_argument("-s","--save",action="store_true",help="save the tabs/chords to a text file")
 parser.add_argument("-t","--tabs",action="store_true",help="Force tab fetch:This will force program to fetch the best tab for the song")
 parser.add_argument("-o","--chords",action="store_true",help="Force chords fetch:This will force program to fetch the best chord for the song.")
+parser.add_argument("-b","--bass",action="store_true",help="Force bass tab fetch:This will force program to fetch the best bass tab for the song.")
+
 args=parser.parse_args()
 title=""
 
@@ -44,6 +46,8 @@ if args.save:
 		save_to_file(args.songname,navigate(soup,numbers,typ="tab"))
 	elif args.chords:
 		save_to_file(args.songname,navigate(soup,numbers,typ="chords"))
+	elif args.bass:
+		browser_open(navigate(soup,numbers,typ="bass"))
 	else:
 		save_to_file(args.songname,navigate(soup,numbers,typ="any"))
 elif args.console:
@@ -51,6 +55,8 @@ elif args.console:
 		console_open(navigate(soup,numbers,typ="tab"))
 	elif args.chords:
 		console_open(navigate(soup,numbers,typ="chords"))
+	elif args.bass:
+		browser_open(navigate(soup,numbers,typ="bass"))
 	else:
 		console_open(navigate(soup,numbers,typ="any"))
 else:
@@ -58,5 +64,7 @@ else:
 		browser_open(navigate(soup,numbers,typ="tab"))
 	elif args.chords:
 		browser_open(navigate(soup,numbers,typ="chords"))
+	elif args.bass:
+		browser_open(navigate(soup,numbers,typ="bass"))
 	else:
 		browser_open(navigate(soup,numbers,typ="any"))
