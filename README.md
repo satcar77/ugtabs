@@ -1,4 +1,4 @@
-#UgTabs
+# UgTabs
 ======
 
 Automatically selects and displays best tabs/chords available for a song from ultimate-guitar.com based on the user ratings on your default browser. Gives you the option to display the tabs in the console as well as save the file to an external text file. If the artist and song are not given as arguments the currently playing song is taken from Rhythmbox.
