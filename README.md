@@ -33,11 +33,11 @@ See the help output
     or
     ugtabs -h
 
-`ugtabs`, get the currently playing song from 
-Rhythmbox if possible, then fetch its tabs/chords from ultimate-guitar and output 
-them to your browser. The output mode can be changed with various optional arguments `-c` `-s` . The song title can be given as `ugtabs Hail to the king` or `ugtabs paranoid -c -n 3` ;the latter one displays 3 best tabs on your stdout. 
+`ugtabs`, gets the currently playing song from 
+Rhythmbox if possible, then fethes its tabs/chords from ultimate-guitar and output 
+them to your browser. The output mode can be changed with various optional arguments `-c` `-s` . The song title can be given as `ugtabs Enter Sandman` or `ugtabs paranoid -c -n 3` ;the latter one displays 3 best tabs on your stdout. 
 
-By default, ugtabs may select either tab or chords based upon the rating but you can force ugtabs to display only the tabs or chords by using `-o or --chords` or `-t` or `--tabs` arguments.
+By default, ugtabs can select either tab or chords based upon the rating but you can force ugtabs to filter tabs or chords by using `-o or --chords` or `-t` or `--tabs` arguments.
 Example:
 
     ugtabs hey jude -c
